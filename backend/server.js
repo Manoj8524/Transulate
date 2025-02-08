@@ -35,6 +35,7 @@ app.post("/translate", async (req, res) => {
         model: "openai/gpt-3.5-turbo",
         messages: [{ role: "user", content: prompt }],
       },
+      
       {
         headers: { Authorization: `Bearer ${API_KEY}` },
       }
