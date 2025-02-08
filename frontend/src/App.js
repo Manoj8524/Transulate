@@ -10,39 +10,30 @@ function App() {
   // Speech-to-Text Function
   const startListening = () => {
     const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition; // Ensure compatibility
-  
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
     if (!SpeechRecognition) {
       alert("Your browser does not support speech recognition. Please use Chrome or Edge.");
       return;
     }
-  
+
     const recognition = new SpeechRecognition();
-    recognition.lang = translationType === "tamil-to-english" ? "ta-IN" : "en-US"; // Tamil/English
-  
-    recognition.onstart = () => {
-      setIsListening(true);
-    };
-  
+    recognition.lang = translationType === "tamil-to-english" ? "ta-IN" : "en-US";
+
+    recognition.onstart = () => setIsListening(true);
     recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      setInputText(transcript);
+      setInputText(event.results[0][0].transcript);
       setIsListening(false);
     };
-  
-    recognition.onerror = (event) => {
-      console.error("Speech Recognition Error:", event.error);
-      setIsListening(false);
-    };
-  
+    recognition.onerror = () => setIsListening(false);
+
     recognition.start();
   };
 
   // Function to Translate Text
   const translateText = async () => {
     try {
-      
-      const res = await axios.post("https://transulate-gray.vercel.app/translate", {
+      const res = await axios.post("https://transulate-nine.vercel.app/translate", {
         text: inputText,
         type: translationType,
       });
@@ -65,7 +56,7 @@ function App() {
       >
         <option value="tanglish-to-english">Tanglish ➡ English</option>
         <option value="english-to-tanglish">English ➡ Tanglish</option>
-        <option value="tamil-to-english">Tamil ➡ English</option> {/* Newly Added Option */}
+        <option value="tamil-to-english">Tamil ➡ English</option>
       </select>
 
       <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>

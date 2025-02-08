@@ -11,12 +11,6 @@ const PORT = process.env.PORT || 5000;
 const API_KEY = process.env.OPENAI_API_KEY;
 const BASE_URL = process.env.BASE_URL;
 
-// ✅ Health Check Route
-app.get("/", (req, res) => {
-  res.send("✅ Server is running!");
-});
-
-// ✅ Translation API
 app.post("/translate", async (req, res) => {
   try {
     const { text, type } = req.body;
@@ -53,7 +47,4 @@ app.post("/translate", async (req, res) => {
   }
 });
 
-// Start server locally
 app.listen(PORT, () => console.log(`🔥 Server running on port ${PORT}`));
-
-module.exports = app; // Required for Vercel deployment
