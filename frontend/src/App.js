@@ -41,6 +41,7 @@ function App() {
   // Function to Translate Text
   const translateText = async () => {
     try {
+      
       const res = await axios.post("https://transulate-gray.vercel.app/translate", {
         text: inputText,
         type: translationType,
