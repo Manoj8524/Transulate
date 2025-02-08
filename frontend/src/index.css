@@ -1,0 +1,23 @@
+
+@import "@fontsource/inter"; /* Normal */
+@import "@fontsource/inter/400.css"; /* Regular */
+@import "@fontsource/inter/600.css"; /* Semi-Bold */
+@import "@fontsource/inter/700.css"; /* Bold */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+    @apply font-inter;
+  }
+  
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+/* Apply bold to all headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700; /* Bold */
+  }
