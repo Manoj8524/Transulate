@@ -45,42 +45,32 @@ function App() {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2>🔥 Tanglish & English Translator</h2>
+    <div className="flex flex-col items-center p-5 w-full min-h-screen bg-gray-100">
+      <h2 className="text-2xl font-bold mb-4">🔥 Tanglish & English Translator</h2>
 
       {/* Translation Type Dropdown */}
       <select
         value={translationType}
         onChange={(e) => setTranslationType(e.target.value)}
-        style={{ marginBottom: "10px", padding: "5px" }}
+        className="mb-4 p-2 border border-gray-300 rounded"
       >
         <option value="tanglish-to-english">Tanglish ➡ English</option>
         <option value="english-to-tanglish">English ➡ Tanglish</option>
         <option value="tamil-to-english">Tamil ➡ English</option>
       </select>
 
-      <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+      <div className="flex flex-col md:flex-row items-center gap-4 w-full max-w-3xl">
         {/* Input Text Area with Mic Button */}
-        <div style={{ position: "relative" }}>
+        <div className="relative w-full md:w-1/2">
           <textarea
             placeholder="Enter or speak text..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            style={{ width: "300px", height: "100px", padding: "10px" }}
+            className="w-full h-32 p-3 border border-gray-300 rounded"
           />
           <button
             onClick={startListening}
-            style={{
-              position: "absolute",
-              right: "10px",
-              bottom: "10px",
-              padding: "5px 10px",
-              background: isListening ? "red" : "#007bff",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-              borderRadius: "5px",
-            }}
+            className={`absolute right-3 bottom-3 p-2 text-white rounded ${isListening ? "bg-red-500" : "bg-blue-500"}`}
           >
             🎤
           </button>
@@ -91,11 +81,14 @@ function App() {
           placeholder="Translation..."
           value={translatedText}
           readOnly
-          style={{ width: "300px", height: "100px", padding: "10px", background: "#f0f0f0" }}
+          className="w-full md:w-1/2 h-32 p-3 bg-gray-200 border border-gray-300 rounded"
         />
       </div>
 
-      <button onClick={translateText} style={{ marginTop: "20px", padding: "10px" }}>
+      <button 
+        onClick={translateText} 
+        className="mt-4 px-6 py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600"
+      >
         Translate
       </button>
     </div>
